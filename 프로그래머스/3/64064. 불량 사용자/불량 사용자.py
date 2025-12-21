@@ -1,42 +1,28 @@
 def solution(user_id, banned_id):
-    cnt_list = set()
-    user_idx = [[] for _ in range(len(banned_id))]
+    def is_match(user, banned):
+        if len(user) != len(banned):
+            return False
+        return all(b == '*' or b == u for u, b in zip(user, banned))
 
+    pattern_id = []
+    for banned in banned_id:
+        pattern = [user for user in user_id if is_match(user, banned)]
+        pattern_id.append(pattern)
 
-    for b_idx, ban_id in enumerate(banned_id):
-        if ban_id.count('*') == len(ban_id):
-            for idx, u_id in enumerate(user_id):
-                if len(u_id) == len(ban_id):
-                    user_idx[b_idx].append(idx)
+    result = set()
+    chosen = set()
 
-            continue
+    def DFS(depth):
+        if depth == len(pattern_id):
+            result.add(frozenset(chosen))
+            return
+        
+        for id in pattern_id[depth]:
+            if id not in chosen:
+                chosen.add(id)
+                DFS(depth+1)
+                chosen.remove(id)
 
-        for idx, u_id in enumerate(user_id):
-            if len(u_id) != len(ban_id):
-                continue
-            for i in range(len(u_id)):
-                if ban_id[i] == '*':
-                    continue
-                if u_id[i] != ban_id[i]:
-                    break   
-            else:
-                user_idx[b_idx].append(idx)
+    DFS(0)
 
-    total_case = []
-    
-    def DFS(depth, set_f, user_idx, total_case):
-        if depth == len(user_idx):
-            return total_case.append(set_f.copy())
-
-        for u_i in user_idx[depth]:
-            if u_i not in set_f:
-                set_f.add(u_i)
-                DFS(depth+1, set_f, user_idx, total_case)
-                set_f.remove(u_i)
-
-    DFS(0, set(), user_idx, total_case)
-
-    for case in total_case:
-        cnt_list.add(tuple(case))
-
-    return len(cnt_list)
+    return len(result)
