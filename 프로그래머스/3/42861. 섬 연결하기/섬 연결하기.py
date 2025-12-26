@@ -1,29 +1,30 @@
 def solution(n, costs):
-    costs_sorted = sorted(costs, key=lambda x: x[2])
+    costs.sort(key=lambda x: x[2])
     parent = [i for i in range(n)]
 
-    def find(parent, x):
+    def find(x):
         if parent[x] != x:
-            parent[x] = find(parent, parent[x])
+            parent[x] = find(parent[x])
         return parent[x]
+    
+    def union(a, b):
+        ra = find(a)
+        rb = find(b)
 
-    def union(parent, x, y):
-        rootx = find(parent, x)
-        rooty = find(parent, y)
-
-        if rootx == rooty:
+        if ra == rb:
             return False
-
-        if rootx > rooty:
-            parent[rootx] = rooty
-        else:
-            parent[rooty] = rootx
-
+        
+        parent[rb] = ra
         return True
     
     total_cost = 0
-    for a, b, cost in costs_sorted:
-        if union(parent, a, b):
-            total_cost += cost
+    edges_cnt = 0
 
+    for a, b, cost in costs:
+        if union(a, b):
+            total_cost += cost
+            edges_cnt += 1
+            if edges_cnt == n - 1:
+                break
+    
     return total_cost
