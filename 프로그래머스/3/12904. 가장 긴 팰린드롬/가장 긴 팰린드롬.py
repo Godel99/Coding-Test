@@ -10,7 +10,6 @@ def solution(s):
     for i in range(n):
         odd_len = expand(i, i)
         even_len = expand(i, i+1)
-
         max_len = max(max_len, odd_len, even_len)
 
     return max_len
