@@ -3,20 +3,20 @@ def solution(a):
     if n <= 2:
         return n
     
-    surive = set()
+    survive = set()
     cur_min = float('inf')
-    for x in a:
-        if x < cur_min:
-            cur_min = x
-            surive.add(x)
+    for i in range(n):
+        if a[i] < cur_min:
+            cur_min = a[i]
+            survive.add(i)
 
     cur_min = float('inf')
-    for x in reversed(a):
-        if x < cur_min:
-            cur_min = x
-            surive.add(x)
+    for i in range(n-1, -1, -1):
+        if a[i] < cur_min:
+            cur_min = a[i]
+            survive.add(i)
     
-    return len(surive)
+    return len(survive)
 
 
 # def solution(a):
