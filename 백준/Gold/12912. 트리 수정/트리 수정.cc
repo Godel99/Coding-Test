@@ -1,8 +1,6 @@
 #include<bits/stdc++.h>
-#include <vector>
-#include <string>
 using namespace std;
-using ll=long long;
+using ll = long long;
 using pll = pair<ll, ll>;
 
 int N;
@@ -16,7 +14,7 @@ pll DFS(int start, int pre, int blocked_edge){
     st.push({start, 0});
     visited[start] = true;
 
-    ll node = start;
+    int node = start;
     ll max_dist = 0;
 
     while (!st.empty()){
@@ -45,7 +43,7 @@ int main(){
     graph.resize(N);
 
     for (int i = 0; i < N-1; i++){
-        int u, v, w;
+        int u, v; ll w;
         cin >> u >> v >> w;
         edges.push_back({u,v,w});
         graph[u].push_back({v,w});
@@ -59,4 +57,5 @@ int main(){
     }
 
     cout << answer;
+
 }
