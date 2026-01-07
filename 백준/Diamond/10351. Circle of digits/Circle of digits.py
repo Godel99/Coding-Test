@@ -5,26 +5,21 @@ def input():
     return sys.stdin.readline().rstrip()
 
 def SA(s):
-    n = len(s); m = max(n, 1024)+1
-    sa = list(range(n)); nr = [0] * (2*n); idx = [0] * n
-    r = [0] * (2*n)
-    for i in range(n):
-        r[i] = int(s[i]) + 1
+    n = len(s); m = max(n, 1024) + 1
+    sa = list(range(n)); nr = [0] * (2*n); idx = [0] * n; r = [0] * (2*n)
+    for i in range(n): r[i] = int(s[i]) + 1
 
-    d = 1
+    d = 1 
     while d < n:
         cmp = lambda i, j: (
             r[i] < r[j] or (r[i] == r[j] and r[i+d] < r[j+d])
         )
         cnt = [0] * m
-        for i in range(n): 
-            val = r[i+d] if i+d < n else 0
-            cnt[val] += 1
+        for i in range(n): cnt[r[i+d]] += 1
         for i in range(1, m): cnt[i] += cnt[i-1]
         for i in range(n-1, -1, -1): 
-            val = r[i+d] if i+d < n else 0
-            cnt[val] -= 1
-            idx[cnt[val]] = i
+            cnt[r[i+d]] -= 1
+            idx[cnt[r[i+d]]] = i
         cnt = [0] * m
         for i in range(n): cnt[r[i]] += 1
         for i in range(1, m): cnt[i] += cnt[i-1]
@@ -69,4 +64,3 @@ def main():
     print(s[ret[l]: ret[l]+(n-1)//k+1])
 if __name__ == '__main__':
     main()
-
