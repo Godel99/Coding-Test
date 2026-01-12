@@ -7,12 +7,8 @@ def input():
 def main():
     n = int(input())
     s = input()
-    even = odd = 0
-    for c in s:
-        if int(c) & 1: odd += 1
-        else: even += 1
-    if odd > even: print(1)
-    elif odd < even: print(0)
-    else: print(-1)
+    ans = 0
+    for c in s: ans += (1 if int(c) & 1 else -1)
+    print(-1+2*(ans>0)+(ans<0))
 if __name__ == '__main__':
     main()
