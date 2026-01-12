@@ -9,17 +9,10 @@ from collections import deque
 def main():
     n, k = map(int, input().split())
     q = deque(list(range(1, n+1)))
-    i = 1
-    print('<', end='')
+    ans = []
     while q:
-        j = q.popleft()
-        if i % k == 0:
-            print(j, end='')
-            if q:
-                print(end=', ')
-        else:
-            q.append(j)
-        i += 1
-    print('>')
+        q.rotate(-(k-1))
+        ans.append(str(q.popleft()))
+    print(f'<{", ".join(ans)}>')
 if __name__ == '__main__':
     main()
