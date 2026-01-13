@@ -19,16 +19,15 @@ def isopen(n, board):
     return True
 
 def solution(key, lock):
-    n = len(lock)
-    m = len(key)
+    n, m =  len(lock), len(key)
     board = [[0] * n*3 for _ in range(n*3)]
     for i in range(n):
         for j in range(n):
             board[i+n][j+n] = lock[i][j]
     cur = key
-    for r in range(4):
-        for x in range(2*n):
-            for y in range(2*n):
+    for _ in range(4):
+        for x in range(2*n+1):
+            for y in range(2*n+1):
                 for i in range(m):
                     for j in range(m):
                         board[x+i][y+j] += cur[i][j]
