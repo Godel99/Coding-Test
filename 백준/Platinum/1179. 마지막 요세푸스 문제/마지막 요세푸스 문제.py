@@ -5,40 +5,37 @@ def input():
     return sys.stdin.readline().rstrip()
 
 def josephus(n, k):
-    if n == 1:
-        return 0
+    if n == 1: return 0
     
-    # 1. 내려가는 단계 (Downward): N이 1이 될 때까지의 경로를 저장
-    path = []
-    curr = n
-    while curr > 1:
-        path.append(curr)
-        if curr < k:
-            curr = curr - 1
-        else:
-            curr = curr - curr // k
-            
-    # 2. 올라가는 단계 (Upward): 1(Base case)부터 시작하여 역순으로 계산
-    result = 0  # n=1일 때의 반환값
+    # i: 현재 인원 수 (1명부터 시작)
+    # res: 현재 생존자의 인덱스 (0-based)
+    res = 0
+    i = 1
     
-    # path 리스트를 뒤에서부터 순회 (스택 Pop과 동일)
-    while path:
-        curr_n = path.pop()
+    while i < n:
+        # 1. 한 번에 건너뛸 수 있는 최대 크기(step) 계산
+        # 공식: 현재 남은 거리(i - res - 1)를 (k-1)로 나눈 몫
+        # 의미: 인덱스(res)가 k만큼 증가해도 원의 크기(i)를 넘어서 '한 바퀴 돌지 않는' 안전 구간
+        step = (i - res - 1) // (k - 1)
         
-        if curr_n < k:
-            # 재귀 코드의: return (josephus(n-1, k)+k)%n 부분
-            result = (result + k) % curr_n
-        else:
-            # 재귀 코드의: l = ... 부분 로직
-            # result는 재귀 호출의 결과값(l)에 해당함
-            l = result - (curr_n % k)
+        # 2. 최소 1칸은 진행해야 함 (step이 0이면 1로 강제)
+        if step == 0:
+            step = 1
             
-            if l < 0:
-                result = l + curr_n
-            else:
-                result = l + l // (k - 1)
-                
-    return result
+        # 3. 목표인 n을 넘지 않도록 조정
+        if i + step > n:
+            step = n - i
+            
+        # 4. 상태 업데이트
+        # 인덱스는 k * step 만큼 증가
+        res = res + (step * k)
+        # 인원 수는 step 만큼 증가
+        i = i + step
+        # 원형 구조이므로 모듈러 연산
+        res = res % i
+        
+    return res
+
 def main():
     n, k = map(int, input().split())
     print(n) if k == 1 else print(josephus(n,k)+1)
