@@ -83,6 +83,30 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+```python
+import sys
+def print(*args, sep=" ", end="\n"):
+    sys.stdout.write(sep.join(map(str, args)) + end)
+def input():
+    return sys.stdin.readline().rstrip()
+
+def josephus(n, k):
+    i = 1
+    ans = 0
+    while i < n:
+        j = (i-ans-1)//(k-1)+1
+        if i + j > n: break
+        ans = (ans+k*j)%(i+j)
+        i += j
+    ans += (n-i)*k
+    return ans
+
+def main():
+    n, k = map(int, input().split())
+    print(n) if k == 1 else print(josephus(n,k)+1)
+if __name__ == '__main__':
+    main()
+```
 ### C++
 ```c++
 #include<bits/stdc++.h>
