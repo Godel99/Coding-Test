@@ -3,16 +3,21 @@ def print(*args, sep=" ", end="\n"):
     sys.stdout.write(sep.join(map(str, args)) + end)
 def input():
     return sys.stdin.readline().rstrip()
-    
+
+sys.setrecursionlimit(10**7)
+
 def main():
     n = int(input())
+    out = []
     def hanoi(d, start, via, end):
         if d == 1:
-            return print(start, end)
+            out.append(f'{start} {end}')
+            return
         hanoi(d-1, start, end, via)
-        print(start, end)
+        out.append(f'{start} {end}')
         hanoi(d-1, via, start, end)
-    print(pow(2, n)-1)
+    print((1 << n)-1)
     hanoi(n, 1, 2, 3)
+    print('\n'.join(out))
 if __name__ == '__main__':
     main()
