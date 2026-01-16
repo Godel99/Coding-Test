@@ -13,6 +13,6 @@ def main():
             cnt += 1
             a[i] = 1+(i==1)
     print(cnt)
-    for i in range(1, n+1): print(a[i], end=' ')
+    print(*a[1:])
 if __name__ == '__main__':
     main()
