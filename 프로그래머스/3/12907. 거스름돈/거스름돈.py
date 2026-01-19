@@ -5,6 +5,6 @@ def solution(n, money):
 
     for coin in money:
         for x in range(coin, n+1):
-            dp[x] += dp[x-coin]
+            dp[x] = (dp[x] + dp[x-coin]) % MOD
     
-    return dp[n] % MOD
+    return dp[n]
