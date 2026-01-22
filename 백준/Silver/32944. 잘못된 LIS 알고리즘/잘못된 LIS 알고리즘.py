@@ -4,12 +4,12 @@ def input(): return sys.stdin.readline().rstrip()
 
 def main():
     n, m, k = map(int, input().split())
-    if n == m: print(-1); return 0
+    if n == m: return print(-1)
     ans = []
-    for i in range(1, k): ans.append(i)
+    ans.extend(range(1, k))
     ans.append(n)
-    for i in range(k, m): ans.append(i)
-    for i in range(n-1, m-1, -1): ans.append(i)
+    ans.extend(range(k, m))
+    ans.extend(range(n-1, m-1, -1))
     print(*ans)
     return 0
 if __name__ == '__main__':
