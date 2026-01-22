@@ -94,5 +94,5 @@ int main(){
 </details>
 
 ## 시간 및 공간 복잡도
-* 시간복잡도: $\mathcal{O}()$
-* 공간복잡도: $\mathcal{O}()$
+* 시간복잡도: $\mathcal{O}(n)$
+* 공간복잡도: $\mathcal{O}(n)$
