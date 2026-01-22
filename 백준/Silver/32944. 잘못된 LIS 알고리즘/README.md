@@ -39,3 +39,60 @@
 
  <p>문제의 조건을 만족하는 수열이 존재한다면, 그러한 수열 중 하나를 골라 수열을 이루는 <mjx-container class="MathJax" jax="CHTML" style="font-size: 109%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>N</mi></math></mjx-assistive-mml><span aria-hidden="true" class="no-mathjax mjx-copytext">$N$</span></mjx-container>개의 원소를 순서대로 공백으로 구분하여 출력한다. 만약 존재하지 않는다면 그 대신 <span style="color:#e74c3c;"><code>-1</code></span>을 출력한다.</p>
 
+# 풀이
+$N = M$ 경우를 **제외**하고는 문제에서 요구하는 수열을 구할 수 있습니다. 
+
+$N = M$ 경우 정현이 알고리즘이 적용된 수열을 반환 할 수 없기 때문입니다.
+
+그 다음은 아래 순서대로 구현하면 됩니다.
+
+1. 길이가 K − 1 인 증가수열 [ 1 , 2 , ⋯ , K − 1 ] 을 생각합시다. 그 뒤에 N 을 추가합니다.
+2. 저격할 알고리즘에서 이 뒤의 원소는 싹 다 무시되므로 길이 K 의 증가 수열이 얻어집니다. 
+3. 이제 K 부터 M − 1 까지의 원소를 나열해 LIS의 길이를 M − 1 로 만들어 줍니다.
+4. 그 뒤의 어느 원소를 골라도 그 원소가 LIS의 끝이도록, N − 1 부터 M 까지의 원소를 내림차순으로 나열합니다.
+
+## 구현
+<details>
+<summary>코드</summary>
+
+### Python
+```python
+import sys
+def print(*args, sep=" ", end="\n"): sys.stdout.write(sep.join(map(str, args)) + end)
+def input(): return sys.stdin.readline().rstrip()
+
+def main():
+    n, m, k = map(int, input().split())
+    if n == m: return print(-1)
+    ans = []
+    ans.extend(range(1, k))
+    ans.append(n)
+    ans.extend(range(k, m))
+    ans.extend(range(n-1, m-1, -1))
+    print(*ans)
+    return 0
+if __name__ == '__main__':
+    sys.exit(main())
+```
+### C++
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main(){
+    cin.tie(0);cout.tie(0);ios::sync_with_stdio(false);
+    int n, m, k; cin >> n >> m >> k;
+    if(n == m) return !(cout << -1);
+    for(int i = 1; i < k; i++) cout << i << ' ';
+    cout << n << ' ';
+    for(int i = k; i < m; i++) cout << i << ' ';
+    for(int i = n-1; i >= m; i--) cout << i << ' ';
+	return 0;
+}
+```
+</details>
+
+## 시간 및 공간 복잡도
+* 시간복잡도: $\mathcal{O}()$
+* 공간복잡도: $\mathcal{O}()$
