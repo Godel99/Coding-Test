@@ -29,7 +29,7 @@ def main():
     x, y = map(int, input().split())
     n = 1<<k
     global board, cnt
-    board = [[0] * 130 for _ in range(130)]
+    board = [[0] * (n+1) for _ in range(n+1)]
     cnt = 1
     rf(1, 1, n, x, y)
     board[y][x] = -1
