@@ -1,9 +1,12 @@
 #include<bits/stdc++.h>
 using namespace std;
 using ll = long long;
+using lll = __int128;
+const lll INF = LLONG_MAX;
 
-ll dist(ll x, ll y){
+lll dist(lll x, lll y){
     if(x < 0) x = -x; if(y < 0) y = -y;
+    if(x > 2'000'000'000LL || y > 2'000'000'000LL) return INF;
     return x*x + y*y;
 }
 
@@ -11,8 +14,8 @@ int main(){
     cin.tie(0); cout.tie(0); ios::sync_with_stdio(false);
     int dx[] = {1, 0, -1, 0}, dy[] = {0, 1, 0, -1};
     ll sx, sy; cin >> sx >> sy; if(!sx && !sy) return !(cout << -1);
-    ll x = -sx, y = -sy;
-    ll ax = x, ay = y;
+    lll x = -sx, y = -sy;
+    lll ax = x, ay = y;
     string s; cin >> s;
     int idx = 0, dir = 0;
     while(idx < s.length()){
@@ -31,6 +34,6 @@ int main(){
             dir += d, dir %= 4;
         }
     }
-    cout << ax+sx << ' ' << ay+sy;
+    cout << (ll)(ax+sx) << ' ' << (ll)(ay+sy);
     return 0;
 }
