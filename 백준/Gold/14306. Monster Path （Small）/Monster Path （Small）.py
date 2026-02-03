@@ -35,7 +35,8 @@ def main():
                 if board[y][x] == 'A': d[y][x] = p
                 else: d[y][x] = q
         return ans
-    for i in range(1, T+1): print(f'Case #{i}: {sv():.12f}')
+    for i in range(1, T+1): print(f'Case #{i}: {sv():.7f}')
     return 0
 if __name__ == '__main__':
+
     sys.exit(main())
