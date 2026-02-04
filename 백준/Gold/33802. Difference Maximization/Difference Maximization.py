@@ -4,14 +4,14 @@ def input(): return sys.stdin.readline().rstrip()
 
 def main():
     n, m = map(int, input().split())
-    A = [0]*(n+1); dmin = dmax = ans = 0
+    A = [0]*(m+1); dmin = dmax = ans = 0
     for a in list(map(int, input().split())):
         if a:
             dmin += a-1
             dmax += m-a
         A[a] += 1
     s = 0
-    for i in range(1, m+1):
+    for i in range(1, m):
         s += A[i]
         ans += s*(n-A[0]-s)
     while A[0]:
