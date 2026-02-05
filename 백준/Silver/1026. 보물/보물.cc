@@ -1,25 +1,16 @@
-#include<bits/stdc++.h>
-using namespace std;
-using ll = long long;
+#include <iostream>
+#include <queue>
 
-int main(){
-    cin.tie(0);cout.tie(0);ios::sync_with_stdio(false);
-    int n; cin >> n;
-    vector<int> a, b;
-    for(int i = 0; i < n; i++){
-        int k; cin >> k;
-        a.push_back(k);
-    }
-    for(int i = 0; i < n; i++){
-        int k; cin >> k;
-        b.push_back(k);
-    }
-    sort(a.begin(), a.end());
-    sort(b.begin(), b.end(), [](const int& x, const int& y){
-        return x > y;
-    });
-    int ans = 0;
-    for(int i = 0; i < n; i++) ans += a[i]*b[i];
-    cout << ans;
-	return 0;
+std::priority_queue<int, std::vector<int>, std::greater<int>> A;
+std::priority_queue<int, std::vector<int>, std::less<int>> B;
+
+int main() {
+    int N, result = 0;
+    std::cin >> N;
+
+    for (int a, i = 0; i < N; ++i) std::cin >> a, A.push(a);
+    for (int b, i = 0; i < N; ++i) std::cin >> b, B.push(b);
+    while (N--) result += A.top() * B.top(), A.pop(), B.pop();
+
+    std::cout << result;
 }
