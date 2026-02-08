@@ -8,7 +8,7 @@ def main():
     q, r = divmod(n, 5)
     if r == 0: print(q)
     elif r == 1 or r == 3: print(q + 1)
-    elif r == 2 or r == 4: print(q + 2)
+    else: print(q + 2)
     return 0
 if __name__ == '__main__':
     sys.exit(main())
