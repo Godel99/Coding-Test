@@ -2,19 +2,14 @@ import sys
 def print(*args, sep=" ", end="\n"): return sys.stdout.write(sep.join(map(str, args)) + end)
 def input(): return sys.stdin.readline().rstrip()
 
-from collections import defaultdict
+from collections import Counter
 
 def main():
     n = int(input())
-    d = defaultdict(int)
-    for a in input().split():
-        d[a] += 1
+    cards = Counter(input().split())
     m = int(input())
-    ans = []
-    for a in input().split():
-        if a in d: ans.append(d[a])
-        else: ans.append(0)
-    print(' '.join(map(str, ans)))
+    queries = input().split()
+    print(' '.join(str(cards[query]) for query in queries))
     return 0
 if __name__ == '__main__':
     sys.exit(main())
