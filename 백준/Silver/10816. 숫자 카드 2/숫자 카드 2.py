@@ -7,12 +7,14 @@ from collections import defaultdict
 def main():
     n = int(input())
     d = defaultdict(int)
-    for a in map(int, input().split()):
+    for a in input().split():
         d[a] += 1
     m = int(input())
-    for a in map(int, input().split()):
-        if a in d: print(d[a], end=' ')
-        else: print(0, end=' ')
+    ans = []
+    for a in input().split():
+        if a in d: ans.append(d[a])
+        else: ans.append(0)
+    print(' '.join(map(str, ans)))
     return 0
 if __name__ == '__main__':
     sys.exit(main())
