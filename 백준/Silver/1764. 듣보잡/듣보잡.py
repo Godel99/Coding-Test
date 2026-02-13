@@ -5,16 +5,13 @@ def input(): return sys.stdin.readline().rstrip()
 def main():
     n, m = map(int, input().split())
     s = set()
-    cnt = 0
     ans = []
     for _ in range(n): s.add(input())
     for _ in range(m):
         name = input()
-        if name in s:
-            cnt += 1
-            ans.append(name)
+        if name in s: ans.append(name)
     ans.sort()
-    print(cnt)
+    print(len(ans))
     print('\n'.join(ans))
     return 0
 if __name__ == '__main__':
