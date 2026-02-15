@@ -19,8 +19,8 @@ def main():
     for i in range(n):
         if deg[i] == 0: heapq.heappush(hq, (a[i], i))
     while hq:
-        cur = heapq.heappop(hq)[1]
-        print(a[cur], end=' ')
+        x, cur = heapq.heappop(hq)
+        print(x, end=' ')
         for nxt in e[cur]:
             deg[nxt] -= 1
             if deg[nxt] == 0: heapq.heappush(hq, (a[nxt], nxt))
