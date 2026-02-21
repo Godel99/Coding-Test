@@ -10,7 +10,7 @@ def main():
     g = [tuple(map(int, input().split())) for _ in range(n)]
     g.sort()
     ans = cur = 0
-    maxh = 12345678
+    maxh = 123456789
     max_hq = []
     for i in range(n):
         x, y, p, c = g[i]
