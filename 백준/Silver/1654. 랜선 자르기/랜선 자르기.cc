@@ -13,7 +13,7 @@ int main(){
     }
     while(low <= high){
         ll mid = (low+high)/2;
-        int total = 0;
+        ll total = 0;
         for(auto l : line){
             total += l/mid;
         }
