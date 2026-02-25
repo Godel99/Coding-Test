@@ -15,7 +15,7 @@ int main(){
             cin >> board[i][j];
             if(board[i][j] == 'I'){
                 board[i][j] = 'X';
-                start.first = i, start.second = j;
+                start = {i, j};
             }
         }
     }
