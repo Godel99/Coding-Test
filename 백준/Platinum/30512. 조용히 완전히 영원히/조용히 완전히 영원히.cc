@@ -6,7 +6,7 @@ const int INF = 0x3f3f3f3f;
 vector<int> A, T, seg, lazy, ans;
 
 void update(int now, int l, int r, int L, int R, int x, int t){
-    if(R <l || r < L) return;
+    if(R < l || r < L) return;
     if(L <= l && r <= R){
         if(seg[now] > x){
             seg[now] = x;
@@ -24,8 +24,8 @@ void update(int now, int l, int r, int L, int R, int x, int t){
         seg[now<<1|1] = seg[now];
         lazy[now<<1|1] = max(lazy[now<<1|1], lazy[now]);
     }
-    seg[now] = INF;
-    lazy[now] = 0;
+    // seg[now] = INF;
+    // lazy[now] = 0;
     int mid = (l+r)>>1;
     update(now<<1, l, mid, L, R, x, t);
     update(now<<1|1, mid+1, r, L, R, x, t);
