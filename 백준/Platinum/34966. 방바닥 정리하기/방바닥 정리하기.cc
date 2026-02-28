@@ -23,8 +23,8 @@ int solved(pii start, pii end, bool type){
             for(int dir = 0; dir < 4; dir++){
                 int ny = y+dy[dir], nx = x+dx[dir];
                 if(ny < 0 || nx < 0 || ny >= n || nx >= n) continue;
-                int nd = dp[y][x]+(a[ny][nx] == (type^(res&1) ? 'b' : 'a'));
-                if(a[ny][nx] == (type ? 'a' : 'b') && !res) nd = 2;
+                int nd = dp[y][x]+(a[ny][nx] == "ab"[type^(res&1)]);
+                if(a[ny][nx] == "ba"[type] && !res) nd = 2;
                 if(dp[ny][nx] <= nd) continue; dp[ny][nx] = nd; q[nd%3].push({ny, nx});
             }
         }
