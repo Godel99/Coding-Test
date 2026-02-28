@@ -35,8 +35,8 @@ def main():
                 for dir in range(4):
                     ny = y+dy[dir]; nx = x+dx[dir]
                     if ny < 0 or nx < 0 or ny >= n or nx >= n: continue
-                    nd = dp[y][x]+(a[ny][nx] == ['a', 'b'][type^(res&1)]) 
-                    if a[ny][nx] == ['b', 'a'][type] and not res: nd = 2
+                    nd = dp[y][x]+(a[ny][nx] == "ab"[type^(res&1)]) 
+                    if a[ny][nx] == "ba"[type] and not res: nd = 2
                     if dp[ny][nx] <= nd: continue
                     dp[ny][nx] = nd; dq[nd%3].append((ny, nx))
         if dp[by][bx] > 1: return inf
