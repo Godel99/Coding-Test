@@ -4,7 +4,6 @@ input = lambda: sys.stdin.readline().rstrip('\r\n')
 
 from collections import deque
 from math import inf
-import heapq
 
 def main():
     n, m = map(int, input().split())
@@ -13,19 +12,23 @@ def main():
         x, y = map(int, input().split())
         e[x].append(y)
         e[y].append(x)
-    ans = []
+    min_d = inf
+    ans = 0
     for i in range(1, n+1):
-        dp = [inf]*(n+1)
+        dist = [-1]*(n+1)
         dq = deque([i])
-        dp[i] = 0
+        dist[i] = 0
         while dq:
             cur = dq.popleft()
             for nxt in e[cur]:
-                if dp[nxt] > dp[cur]+1:
-                    dp[nxt] = dp[cur]+1
+                if dist[nxt] == -1:
+                    dist[nxt] = dist[cur]+1
                     dq.append(nxt)
-        heapq.heappush(ans, (sum(dp[i] for i in range(1, n+1) if dp[i] != inf), i))
-    print(heapq.heappop(ans)[1])
+        sum_d = sum(dist)+1
+        if min_d > sum_d:
+            min_d = sum_d
+            ans = i
+    print(ans)
     return 0
 if __name__ == '__main__':
     sys.exit(main())
