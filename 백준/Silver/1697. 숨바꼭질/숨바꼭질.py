@@ -12,8 +12,7 @@ def main():
     dq = deque([n])
     while dq:
         cur = dq.popleft()
-        for dir in [-1, 1, cur]:
-            nxt = cur+dir
+        for nxt in [cur-1, cur+1, cur*2]:
             if 0 <= nxt < maxl and not dp[nxt]:
                 dp[nxt] = dp[cur]+1
                 dq.append(nxt)
