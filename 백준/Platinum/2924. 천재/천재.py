@@ -18,10 +18,13 @@ def main():
         par[x] += par[y]
         par[y] = x
     for i, x in enumerate(list(map(int, input().split()))): union(i+1, x)
-    m = 1
-    for i in range(c+1, n-d+1): 
-        m = lcm(m, -par[find(i)])
-        if m > b: break
+    m = 1; s = set()
+    for i in range(c+1, n-d+1):
+        r = find(i)
+        if r in s: continue
+        s.add(r)
+        m = lcm(m, -par[r])
+        if m > b: m = b+1; break
     print((b+m-1)//m - (a+m-2)//m)
 if __name__ == '__main__':
     main()
