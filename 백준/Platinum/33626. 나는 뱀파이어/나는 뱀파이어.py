@@ -2,7 +2,7 @@ import sys
 print = lambda *args, sep=" ", end="\n": sys.stdout.write(sep.join(map(str, args)) + end)
 input = lambda: sys.stdin.readline().rstrip('\r\n')
 
-sys.setrecursionlimit(10**7)
+sys.setrecursionlimit(200000)
 
 def main():
     n, m, p = map(int, input().split())
