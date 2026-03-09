@@ -1,6 +1,6 @@
 import sys 
-print = lambda *args, sep=" ", end="\n": sys.stdout.write(sep.join(map(str, args)) + end)
-input = lambda: sys.stdin.readline().rstrip('\r\n')
+def print(*args, sep=" ", end="\n"): return sys.stdout.write(sep.join(map(str, args)) + end)
+def input(): return sys.stdin.readline().rstrip()
 
 def main():
     n, k = map(int, input().split())
