@@ -4,7 +4,6 @@ input = lambda: sys.stdin.readline().rstrip('\r\n')
 
 def main():
     n, m = map(int, input().split())
-    if n > m: n, m = m, n
-    print('ChongChong' if n == 1 and m == 2 else 'GomGom')
+    print('ChongChong' if n == 1 and m == 2 or n == 2 and m == 1 else 'GomGom')
 if __name__ == '__main__':
     main()
