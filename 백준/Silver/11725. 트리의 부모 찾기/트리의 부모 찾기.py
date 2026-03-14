@@ -7,7 +7,7 @@ from collections import deque
 def main():
     n = int(input())
     e = [[] for _ in range(n+1)]
-    par = [-1]*(n+1)
+    par = [0]*(n+1)
     for _ in range(n-1):
         x, y = map(int, input().split())
         e[x].append(y)
@@ -17,9 +17,9 @@ def main():
     while dq:
         cur = dq.popleft()
         for nxt in e[cur]:
-            if par[nxt] == -1:
+            if not par[nxt]:
                 par[nxt] = cur
                 dq.append(nxt)
-    for p in par[2:]: print(p)
+    print('\n'.join(map(str, par[2:])))
 if __name__ == '__main__':
     main()
