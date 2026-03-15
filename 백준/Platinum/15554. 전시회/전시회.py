@@ -6,8 +6,7 @@ from math import inf
 
 def main():
     n = int(input())
-    a = [list(map(int, input().split())) for _ in range(n)]
-    a.sort()
+    a = sorted(list(map(int, input().split())) for _ in range(n))
     L, R, pres = inf, 0, 0
     for i in range(n):
         L = min(L, pres-a[i][0])
