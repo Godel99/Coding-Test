@@ -10,12 +10,11 @@ int main(){
     vector<pll> a(n);
     for(int i = 0; i < n; i++) cin >> a[i].first >> a[i].second;
     sort(a.begin(), a.end());
-    ll L = inf, R = 0, pre = 0;
+    ll L = inf, R = 0, pres = 0;
     for(int i = 0; i < n; i++){
-        ll pres = pre+a[i].second;
-        L = min(L, pre-a[i].first);
-        R = max(R, pres-a[i].first-L);
-        pre = pres;
+        L = min(L, pres-a[i].first);
+        R = max(R, pres+a[i].second-a[i].first-L);
+        pres += a[i].second;
     }
     cout << R;
     return 0;
