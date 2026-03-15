@@ -13,8 +13,8 @@ int main(){
     ll L = inf, R = 0, pres = 0;
     for(int i = 0; i < n; i++){
         L = min(L, pres-a[i].first);
-        R = max(R, pres+a[i].second-a[i].first-L);
         pres += a[i].second;
+        R = max(R, pres-a[i].first-L);
     }
     cout << R;
     return 0;
